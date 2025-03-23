@@ -1,9 +1,13 @@
 using System;
+using KBCore.Refs;
 using UnityEngine;
 
-public abstract class Bullet : MonoBehaviour
+public abstract class Bullet : ValidatedMonoBehaviour
 {
+    [SerializeField, Child] private Animator _animator;
     [SerializeField] private BulletInfo info;
+
+    [SerializeField] private float offset;
     
     public Action OnDespawn;
     public BulletInfo Info => info;
@@ -30,7 +34,12 @@ public abstract class Bullet : MonoBehaviour
         _direction = direction;
         _isFlying = true;
         
-        transform.position = position;
+        var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        _animator.transform.rotation = Quaternion.Euler(0, 0, angle);
+        
+        transform.position = position + direction.normalized * offset;
+        
+        _animator.CrossFade("Fly", 0);
     }
 
     protected virtual void Flying()

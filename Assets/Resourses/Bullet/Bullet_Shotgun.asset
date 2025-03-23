@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Bullet_Shotgun
   m_EditorClassIdentifier: 
   bulletName: Bullet_Shotgun
-  flySpeed: 20
+  flySpeed: 0
   duration: 0.2
   fireRate: 1
