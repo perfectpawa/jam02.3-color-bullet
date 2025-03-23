@@ -74,6 +74,11 @@ public class BulletManager : MonoBehaviour
         var bullet = poolSniper.Get();
         bullet.OnFire(_chargePosition, _chargeDirection);
     }
+
+    public void ChangeBulletType(BulletType type)
+    {
+        _currentBulletType = type;
+    }
 }
 
 public enum BulletType

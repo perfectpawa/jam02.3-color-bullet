@@ -19,6 +19,7 @@ public class PlayerController : ValidatedMonoBehaviour
     
     [SerializeField] private float _chargeDuration = 1.5f;
     
+    [SerializeField] private PlayerColor _playerColor;
 
     private Camera _camera;
     
@@ -66,6 +67,18 @@ public class PlayerController : ValidatedMonoBehaviour
         
         _knockBackTimer.Tick(Time.deltaTime);
         _chargeTimer.Tick(Time.deltaTime);
+        
+        //if click "e" then change the color + 1
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            int nextColor = (int)_playerColor + 1;
+            if (nextColor > 2)
+            {
+                nextColor = 0;
+            }
+            
+            ChangePlayerColor((PlayerColor)nextColor);
+        }
     }
 
     private void FixedUpdate()
@@ -163,7 +176,7 @@ public class PlayerController : ValidatedMonoBehaviour
     
     public void HandleLookAtTarget()
     {
-        var direction = (_lookDirection - (Vector2)transform.position).normalized;
+        var direction = _lookDirection.normalized;
         
         // Calculate the target rotation angle in degrees
         var targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -221,7 +234,35 @@ public class PlayerController : ValidatedMonoBehaviour
     {
         _bulletManager.FireSniper();
     }
-
-
     
+    public void ChangePlayerColor(PlayerColor playerColor)
+    {
+        if (_playerColor == playerColor) return;
+        _playerColor = playerColor;
+        _animator.CrossFade("Idle-" + _playerColor.ToString(), 0f);
+
+        switch (_playerColor)
+        {
+            case PlayerColor.White:
+                _bulletManager.ChangeBulletType(BulletType.Default);
+                break;
+            case PlayerColor.Orange:
+                _bulletManager.ChangeBulletType(BulletType.Shotgun);
+                break;
+            case PlayerColor.Purple:
+                _bulletManager.ChangeBulletType(BulletType.Sniper);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+        
+        Debug.Log($"Changed to {_playerColor} with {_bulletManager.CurrentBulletType}");
+    }
+}
+
+public enum PlayerColor
+{
+    White,
+    Orange,
+    Purple,
 }
