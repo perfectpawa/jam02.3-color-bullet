@@ -11,6 +11,7 @@ public class PlayerController : ValidatedMonoBehaviour
     [SerializeField, Anywhere] private BulletManager _bulletManager;
     
     [SerializeField] private float _moveSpeed = 1.5f;
+    [SerializeField] private float _rotateSpeed = 180f;
     
     [SerializeField] private float _knockBackDuration = 0.5f;
     [SerializeField] private float _knockBackSpeed = 1f;
@@ -161,17 +162,32 @@ public class PlayerController : ValidatedMonoBehaviour
     
     public void HandleLookAtTarget()
     {
-        switch (_lookDirection.x)
-        {
-            case > 0:
-                transform.localScale = new Vector3(-1, 1, 1);
-                transform.right = _lookDirection;
-                break;
-            case < 0:
-                transform.localScale = new Vector3(1, 1, 1);
-                transform.right = -_lookDirection;
-                break;
-        }
+        var direction = (_lookDirection - (Vector2)transform.position).normalized;
+        
+        // Calculate the target rotation angle in degrees
+        var targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        var currentAngle = transform.eulerAngles.z;
+        
+        // Calculate the shortest rotation direction using DeltaAngle
+        var shortestAngle = Mathf.DeltaAngle(currentAngle, targetAngle);
+
+        // Smoothly interpolate to the target angle
+        var newAngle = currentAngle + shortestAngle * _rotateSpeed * Time.deltaTime;
+        
+        transform.rotation = Quaternion.Euler(0, 0, newAngle);
+        
+        // switch (_lookDirection.x)
+        // {
+        //     case > 0:
+        //         transform.localScale = new Vector3(-1, 1, 1);
+        //         transform.right = _lookDirection;
+        //         break;
+        //     case < 0:
+        //         transform.localScale = new Vector3(1, 1, 1);
+        //         transform.right = -_lookDirection;
+        //         break;
+        // }
     }
 
     public void HandleOnKnockBack()

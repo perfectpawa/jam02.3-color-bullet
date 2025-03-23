@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Bullet_Sniper
   m_EditorClassIdentifier: 
   bulletName: Bullet_Sniper
-  flySpeed: 25
-  fireRate: 2
+  flySpeed: 50
   duration: 1
+  fireRate: 2
