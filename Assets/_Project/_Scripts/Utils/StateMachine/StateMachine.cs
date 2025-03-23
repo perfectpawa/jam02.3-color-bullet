@@ -34,6 +34,8 @@ namespace StateMachineBehaviour {
             previousState?.OnExit();
             nextState?.OnEnter();
             current = nodes[state.GetType()];
+            
+            Debug.Log(previousState + " -> " + nextState);
         }
 
         ITransition GetTransition() {

@@ -54,16 +54,8 @@ public class PlayerController : ValidatedMonoBehaviour
 
     private void Start()
     {
-        //call test knockBack after 1 second
-        Invoke(nameof(TestKnockBack), 2f);
     }
 
-    private void TestKnockBack()
-    {
-        Debug.Log("TestKnockBack");
-        _knockBackDirection = -_lookDirection;
-        _knockBackTimer.Start();
-    }
 
     private void Update()
     {
@@ -112,15 +104,17 @@ public class PlayerController : ValidatedMonoBehaviour
         _stateMachine = new StateMachine();
         
         var locomotionState = new PlayerState_Locomotion(this, _animator);
-        var knockBackState = new PlayerState_KnockBack(this, _animator);
-        var chargeState = new PlayerState_Charge(this, _animator);
+        var fireDefaultState = new PlayerState_FireDefault(this, _animator);
+        var fireShotgunState = new PlayerState_FireShotgun(this, _animator);
+        var fireSniperState = new PlayerState_FireSniper(this, _animator);
         
-        At(locomotionState, knockBackState, new FuncPredicate(() => _knockBackTimer.IsRunning));
-        At(locomotionState, chargeState, new FuncPredicate(() => _chargeTimer.IsRunning));
+        Any(fireDefaultState, new FuncPredicate(PredicateForDefault));
+        Any(fireShotgunState, new FuncPredicate(PredicateForShotgun));
+        Any(fireSniperState, new FuncPredicate(PredicateForSniper));
         
-        At(knockBackState, locomotionState, new FuncPredicate(() => !_knockBackTimer.IsRunning));
-        At(chargeState, locomotionState, new FuncPredicate(() => !_chargeTimer.IsRunning));
-
+        At(fireDefaultState, locomotionState, new FuncPredicate(() => !_bulletManager.CanFire && !_wantFire));
+        
+        At(fireShotgunState, locomotionState, new FuncPredicate(() => _knockBackTimer.IsFinished));
         
         _stateMachine.SetState(locomotionState);
         return;
@@ -128,6 +122,25 @@ public class PlayerController : ValidatedMonoBehaviour
         void At(IState from, IState to, IPredicate condition) => _stateMachine.AddTransition(from, to, condition);
         void Any(IState to, IPredicate condition) => _stateMachine.AddAnyTransition(to, condition);
     }
+
+    private bool PredicateForDefault()
+    {
+        if (_bulletManager.CurrentBulletType != BulletType.Default) return false;
+        return _bulletManager.CanFire && _wantFire;
+    }
+
+    private bool PredicateForShotgun()
+    {
+        if (_bulletManager.CurrentBulletType != BulletType.Shotgun) return false;
+        return _bulletManager.CanFire && _wantFire;
+    }
+    
+    private bool PredicateForSniper()
+    {
+        if (_bulletManager.CurrentBulletType != BulletType.Sniper) return false;
+        return _bulletManager.CanFire && _wantFire;
+    }
+    
     
     #endregion
     
@@ -158,6 +171,11 @@ public class PlayerController : ValidatedMonoBehaviour
                 break;
         }
     }
+
+    public void HandleOnKnockBack()
+    {
+        _knockBackTimer.Start();
+    }
     
     public void HandleKnockBack()
     {
@@ -168,8 +186,10 @@ public class PlayerController : ValidatedMonoBehaviour
     {
     }
 
-    public void HandleOnFireDefault()
+    public void HandleOnFire(BulletType bulletType)
     {
+        _bulletManager.Fire(transform.position, _lookDirection, bulletType);
         
+        _knockBackDirection = - _lookDirection.normalized;
     }
 }

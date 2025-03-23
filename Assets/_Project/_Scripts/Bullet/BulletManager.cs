@@ -10,64 +10,73 @@ public class BulletManager : MonoBehaviour
     private CountdownTimer _defaultFireRateTimer;
     private CountdownTimer _shotgunFireRateTimer;
     private CountdownTimer _sniperFireRateTimer;
-    
-    private bool _isFiring = false;
 
-    public bool IsFiring => _isFiring;
+    [SerializeField] private BulletType _currentBulletType = BulletType.Default;
+    private CountdownTimer _defaultTimer;
+    
+    [SerializeField] private bool _canFire = true;
+
+    public BulletType CurrentBulletType => _currentBulletType;
+    public bool CanFire => _canFire;
 
     private void Start()
     {
         _defaultFireRateTimer = new CountdownTimer(poolDefault.Info.fireRate);
-        _defaultFireRateTimer.OnTimerStart += () => _isFiring = true;
+        _defaultFireRateTimer.OnTimerStop += () => _canFire = true;
         
         _shotgunFireRateTimer = new CountdownTimer(poolShotgun.Info.fireRate);
-        _shotgunFireRateTimer.OnTimerStart += () => _isFiring = true;
+        _shotgunFireRateTimer.OnTimerStop += () => _canFire = true;
+        
+        _sniperFireRateTimer = new CountdownTimer(poolSniper.Info.fireRate);
+        _sniperFireRateTimer.OnTimerStop += () => _canFire = true;
     }
 
     private void Update()
     {
         _defaultFireRateTimer.Tick(Time.deltaTime);
+        _shotgunFireRateTimer.Tick(Time.deltaTime);
+        _sniperFireRateTimer.Tick(Time.deltaTime);
     }
 
-    public void Fire(Vector2 position, Vector2 direction, BulletType type, PlayerController player)
+    public void Fire(Vector2 position, Vector2 direction, BulletType bulletType)
     {
-        
-        switch (type)
+        _canFire = false;
+        switch (bulletType)
         {
             case BulletType.Default:
                 FireDefault(position, direction);
                 break;
             case BulletType.Shotgun:
-                FireShotgun(position, direction, player);
+                FireShotgun(position, direction);
                 break;
             case BulletType.Sniper:
-                FireSniper(position, direction, player);
+                FireSniper(position, direction);
                 break;
             default:
-                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                throw new ArgumentOutOfRangeException(nameof(bulletType), bulletType, null);
         }
     }
     
     private void FireDefault(Vector2 position, Vector2 direction)
     {
-        if (_defaultFireRateTimer.IsRunning) return;
         _defaultFireRateTimer.Start();
         
         var bullet = poolDefault.Get();
         bullet.OnFire(position, direction);
     }
     
-    private void FireShotgun(Vector2 position, Vector2 direction, PlayerController player)
+    private void FireShotgun(Vector2 position, Vector2 direction)
     {
-        if (_shotgunFireRateTimer.IsRunning) return;
         _shotgunFireRateTimer.Start();
         
         var bullet = poolShotgun.Get();
         bullet.OnFire(position, direction);
     }
     
-    private void FireSniper(Vector2 position, Vector2 direction, PlayerController player)
+    private void FireSniper(Vector2 position, Vector2 direction)
     {
+        _sniperFireRateTimer.Start();
+        
         var bullet = poolSniper.Get();
         bullet.OnFire(position, direction);
     }
