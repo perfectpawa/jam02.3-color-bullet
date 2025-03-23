@@ -116,6 +116,8 @@ public class PlayerController : ValidatedMonoBehaviour
         
         At(fireShotgunState, locomotionState, new FuncPredicate(() => _knockBackTimer.IsFinished));
         
+        At(fireSniperState, locomotionState, new FuncPredicate(() => _chargeTimer.IsFinished));
+        
         _stateMachine.SetState(locomotionState);
         return;
 
@@ -182,14 +184,28 @@ public class PlayerController : ValidatedMonoBehaviour
         _rb.MovePosition(_rb.position + _knockBackDirection.normalized * (_knockBackSpeed * Time.fixedDeltaTime));
     }
     
-    public void HandleCharge()
+    public void HandleOnFireDefault()
     {
+        _bulletManager.FireDefault(transform.position, _lookDirection);
+    }
+    
+    public void HandleOnFireShotgun()
+    {
+        _bulletManager.FireShotgun(transform.position, _lookDirection);
+        _knockBackDirection = -_lookDirection.normalized;
     }
 
-    public void HandleOnFire(BulletType bulletType)
+    public void HandleOnChargeSniper()
     {
-        _bulletManager.Fire(transform.position, _lookDirection, bulletType);
-        
-        _knockBackDirection = - _lookDirection.normalized;
+        _chargeTimer.Start();
+        _bulletManager.ChargeSniper(transform.position, _lookDirection);
     }
+    
+    public void HandleOnFireSniper()
+    {
+        _bulletManager.FireSniper();
+    }
+
+
+    
 }

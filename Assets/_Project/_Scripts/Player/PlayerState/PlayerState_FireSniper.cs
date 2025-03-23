@@ -6,7 +6,13 @@ public class PlayerState_FireSniper : PlayerState_Base
     {
     }
 
-    public override void FixedUpdate() {
-        player.HandleCharge();
+    public override void OnEnter()
+    {
+        player.HandleOnChargeSniper();
+    }
+
+    public override void OnExit()
+    {
+        player.HandleOnFireSniper();
     }
 }

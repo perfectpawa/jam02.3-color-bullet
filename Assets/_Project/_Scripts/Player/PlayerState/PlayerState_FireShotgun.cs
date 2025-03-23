@@ -8,7 +8,7 @@ public class PlayerState_FireShotgun : PlayerState_Base
 
     public override void OnEnter()
     {
-        player.HandleOnFire(BulletType.Shotgun);
+        player.HandleOnFireShotgun();
         player.HandleOnKnockBack();
     }
 

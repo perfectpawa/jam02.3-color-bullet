@@ -8,7 +8,7 @@ public class PlayerState_FireDefault : PlayerState_Base
 
     public override void OnEnter()
     {
-        player.HandleOnFire(BulletType.Default);
+        player.HandleOnFireDefault();
     }
 
     public override void OnExit()

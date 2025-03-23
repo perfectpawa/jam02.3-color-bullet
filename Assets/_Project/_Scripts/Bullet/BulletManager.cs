@@ -19,6 +19,9 @@ public class BulletManager : MonoBehaviour
     public BulletType CurrentBulletType => _currentBulletType;
     public bool CanFire => _canFire;
 
+    private Vector2 _chargePosition;
+    private Vector2 _chargeDirection;
+
     private void Start()
     {
         _defaultFireRateTimer = new CountdownTimer(poolDefault.Info.fireRate);
@@ -37,48 +40,39 @@ public class BulletManager : MonoBehaviour
         _shotgunFireRateTimer.Tick(Time.deltaTime);
         _sniperFireRateTimer.Tick(Time.deltaTime);
     }
-
-    public void Fire(Vector2 position, Vector2 direction, BulletType bulletType)
+    
+    public void FireDefault(Vector2 position, Vector2 direction)
     {
         _canFire = false;
-        switch (bulletType)
-        {
-            case BulletType.Default:
-                FireDefault(position, direction);
-                break;
-            case BulletType.Shotgun:
-                FireShotgun(position, direction);
-                break;
-            case BulletType.Sniper:
-                FireSniper(position, direction);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(bulletType), bulletType, null);
-        }
-    }
-    
-    private void FireDefault(Vector2 position, Vector2 direction)
-    {
         _defaultFireRateTimer.Start();
         
         var bullet = poolDefault.Get();
         bullet.OnFire(position, direction);
     }
     
-    private void FireShotgun(Vector2 position, Vector2 direction)
+    public void FireShotgun(Vector2 position, Vector2 direction)
     {
+        _canFire = false;
         _shotgunFireRateTimer.Start();
         
         var bullet = poolShotgun.Get();
         bullet.OnFire(position, direction);
     }
+
+    public void ChargeSniper(Vector2 position, Vector2 direction)
+    {
+        _canFire = false;
+        
+        _chargePosition = position;
+        _chargeDirection = direction;
+    }
     
-    private void FireSniper(Vector2 position, Vector2 direction)
+    public void FireSniper()
     {
         _sniperFireRateTimer.Start();
         
         var bullet = poolSniper.Get();
-        bullet.OnFire(position, direction);
+        bullet.OnFire(_chargePosition, _chargeDirection);
     }
 }
 
