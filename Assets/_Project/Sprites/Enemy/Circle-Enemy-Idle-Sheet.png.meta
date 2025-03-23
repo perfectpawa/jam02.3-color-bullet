@@ -1,0 +1,741 @@
+fileFormatVersion: 2
+guid: 3994f3252b2b09549a308e2cc8233abc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8614252994743244244
+    second: Circle-Enemy-Idle-Sheet_0
+  - first:
+      213: 50490497986331637
+    second: Circle-Enemy-Idle-Sheet_1
+  - first:
+      213: -6357457953041355481
+    second: Circle-Enemy-Idle-Sheet_2
+  - first:
+      213: 3943809250714036
+    second: Circle-Enemy-Idle-Sheet_3
+  - first:
+      213: -5811262086081583628
+    second: Circle-Enemy-Idle-Sheet_4
+  - first:
+      213: 1255651921255460557
+    second: Circle-Enemy-Idle-Sheet_5
+  - first:
+      213: 8546907972972097886
+    second: Circle-Enemy-Idle-Sheet_6
+  - first:
+      213: 2939552806870838827
+    second: Circle-Enemy-Idle-Sheet_7
+  - first:
+      213: 2951714696060176936
+    second: Circle-Enemy-Idle-Sheet_8
+  - first:
+      213: 7494691266204336879
+    second: Circle-Enemy-Idle-Sheet_9
+  - first:
+      213: -9019940380633743937
+    second: Circle-Enemy-Idle-Sheet_10
+  - first:
+      213: 6379700618804413415
+    second: Circle-Enemy-Idle-Sheet_11
+  - first:
+      213: -7323599945713610529
+    second: Circle-Enemy-Idle-Sheet_12
+  - first:
+      213: 924109980239288332
+    second: Circle-Enemy-Idle-Sheet_13
+  - first:
+      213: 5941905331911995290
+    second: Circle-Enemy-Idle-Sheet_14
+  - first:
+      213: -1636518909095847078
+    second: Circle-Enemy-Idle-Sheet_15
+  - first:
+      213: -6895292501681615186
+    second: Circle-Enemy-Idle-Sheet_16
+  - first:
+      213: -5540690387572870280
+    second: Circle-Enemy-Idle-Sheet_17
+  - first:
+      213: 5550847803540137859
+    second: Circle-Enemy-Idle-Sheet_18
+  - first:
+      213: 6498078742070608204
+    second: Circle-Enemy-Idle-Sheet_19
+  - first:
+      213: 2068982890490840101
+    second: Circle-Enemy-Idle-Sheet_20
+  - first:
+      213: -5828987792275278123
+    second: Circle-Enemy-Idle-Sheet_21
+  - first:
+      213: 1380508070514624695
+    second: Circle-Enemy-Idle-Sheet_22
+  - first:
+      213: -2703090425545978537
+    second: Circle-Enemy-Idle-Sheet_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 326
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d5140d5579fb8770800000000000000
+      internalID: 8614252994743244244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 326
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f3020527d063b000800000000000000
+      internalID: 50490497986331637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 326
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72dec7acca5c5c7a0800000000000000
+      internalID: -6357457953041355481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 326
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b16375afd20e0000800000000000000
+      internalID: 3943809250714036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 262
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f5696e0cef3a5fa0800000000000000
+      internalID: -5811262086081583628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 262
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcee7f705c8fc6110800000000000000
+      internalID: 1255651921255460557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 262
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e51b4f89487bc9670800000000000000
+      internalID: 8546907972972097886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 262
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2ee90414b36bc820800000000000000
+      internalID: 2939552806870838827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 198
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82a87f090e896f820800000000000000
+      internalID: 2951714696060176936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 198
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe2055f7ffd720860800000000000000
+      internalID: 7494691266204336879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 198
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbdbf15730cb2d280800000000000000
+      internalID: -9019940380633743937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 198
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e34d2569ef398850800000000000000
+      internalID: 6379700618804413415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 134
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd09ba6c6a85d5a90800000000000000
+      internalID: -7323599945713610529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 134
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c085e81812913dc00800000000000000
+      internalID: 924109980239288332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 134
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9f2d95fa63e57250800000000000000
+      internalID: 5941905331911995290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 134
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5bd12b09bae949e0800000000000000
+      internalID: -1636518909095847078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 70
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eae4ad6a0000f40a0800000000000000
+      internalID: -6895292501681615186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 70
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8733c46c2738b13b0800000000000000
+      internalID: -5540690387572870280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 70
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 387644ceaa2980d40800000000000000
+      internalID: 5550847803540137859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 70
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c41c2a70030dd2a50800000000000000
+      internalID: 6498078742070608204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 6
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 524411a1af086bc10800000000000000
+      internalID: 2068982890490840101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 6
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d6f7597c764b1fa0800000000000000
+      internalID: -5828987792275278123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 6
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b88590a6cc882310800000000000000
+      internalID: 1380508070514624695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle-Enemy-Idle-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 6
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75d829d5491bc7ad0800000000000000
+      internalID: -2703090425545978537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Circle-Enemy-Idle-Sheet_0: 8614252994743244244
+      Circle-Enemy-Idle-Sheet_1: 50490497986331637
+      Circle-Enemy-Idle-Sheet_10: -9019940380633743937
+      Circle-Enemy-Idle-Sheet_11: 6379700618804413415
+      Circle-Enemy-Idle-Sheet_12: -7323599945713610529
+      Circle-Enemy-Idle-Sheet_13: 924109980239288332
+      Circle-Enemy-Idle-Sheet_14: 5941905331911995290
+      Circle-Enemy-Idle-Sheet_15: -1636518909095847078
+      Circle-Enemy-Idle-Sheet_16: -6895292501681615186
+      Circle-Enemy-Idle-Sheet_17: -5540690387572870280
+      Circle-Enemy-Idle-Sheet_18: 5550847803540137859
+      Circle-Enemy-Idle-Sheet_19: 6498078742070608204
+      Circle-Enemy-Idle-Sheet_2: -6357457953041355481
+      Circle-Enemy-Idle-Sheet_20: 2068982890490840101
+      Circle-Enemy-Idle-Sheet_21: -5828987792275278123
+      Circle-Enemy-Idle-Sheet_22: 1380508070514624695
+      Circle-Enemy-Idle-Sheet_23: -2703090425545978537
+      Circle-Enemy-Idle-Sheet_3: 3943809250714036
+      Circle-Enemy-Idle-Sheet_4: -5811262086081583628
+      Circle-Enemy-Idle-Sheet_5: 1255651921255460557
+      Circle-Enemy-Idle-Sheet_6: 8546907972972097886
+      Circle-Enemy-Idle-Sheet_7: 2939552806870838827
+      Circle-Enemy-Idle-Sheet_8: 2951714696060176936
+      Circle-Enemy-Idle-Sheet_9: 7494691266204336879
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
