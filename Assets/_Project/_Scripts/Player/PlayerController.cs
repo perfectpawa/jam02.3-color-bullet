@@ -9,6 +9,7 @@ public class PlayerController : ValidatedMonoBehaviour
     [SerializeField, Self] private Rigidbody2D _rb;
     [SerializeField, Child] private Animator _animator;
     [SerializeField, Anywhere] private BulletManager _bulletManager;
+    [SerializeField, Child] private Transform _model;
     
     [SerializeField] private float _moveSpeed = 1.5f;
     [SerializeField] private float _rotateSpeed = 180f;
@@ -177,17 +178,16 @@ public class PlayerController : ValidatedMonoBehaviour
         
         transform.rotation = Quaternion.Euler(0, 0, newAngle);
         
-        // switch (_lookDirection.x)
-        // {
-        //     case > 0:
-        //         transform.localScale = new Vector3(-1, 1, 1);
-        //         transform.right = _lookDirection;
-        //         break;
-        //     case < 0:
-        //         transform.localScale = new Vector3(1, 1, 1);
-        //         transform.right = -_lookDirection;
-        //         break;
-        // }
+        var absAngle = Mathf.Abs(newAngle);
+        if (newAngle is > 90f and < 270f)
+        {
+            transform.localScale = new Vector3(1, -1, 1); // Flip on Y-axis
+        }
+        else
+        {
+            transform.localScale = new Vector3(1, 1, 1); // Normal orientation
+        }
+        
     }
 
     public void HandleOnKnockBack()
