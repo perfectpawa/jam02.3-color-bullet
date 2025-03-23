@@ -127,7 +127,7 @@ public class PlayerController : ValidatedMonoBehaviour
         Any(fireShotgunState, new FuncPredicate(PredicateForShotgun));
         Any(fireSniperState, new FuncPredicate(PredicateForSniper));
         
-        At(fireDefaultState, locomotionState, new FuncPredicate(() => !_bulletManager.CanFire && !_wantFire));
+        At(fireDefaultState, locomotionState, new FuncPredicate(() => !_bulletManager.CanFire || !_wantFire));
         
         At(fireShotgunState, locomotionState, new FuncPredicate(() => _knockBackTimer.IsFinished));
         

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be7c5b4d53484a4a8ced57cdfcd593e3, type: 3}
-  m_Name: Bullet_Default
+  m_Name: EnemyBullet
   m_EditorClassIdentifier: 
-  bulletName: Bullet_Default
+  bulletName: EnemyBullet
   flySpeed: 15
   duration: 1
-  fireRate: 0.5
+  fireRate: 1

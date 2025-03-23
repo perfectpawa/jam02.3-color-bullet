@@ -15,4 +15,4 @@ MonoBehaviour:
   bulletName: Bullet_Sniper
   flySpeed: 50
   duration: 1
-  fireRate: 2
+  fireRate: 1

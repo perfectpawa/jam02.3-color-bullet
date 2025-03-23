@@ -62,7 +62,7 @@ public class ColorPoolSpawner : PoolerBase<ColorPool>
     
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, _collisionRadius);
     }
 }
