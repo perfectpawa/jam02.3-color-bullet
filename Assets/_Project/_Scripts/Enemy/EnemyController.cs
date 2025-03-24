@@ -101,6 +101,8 @@ public class EnemyController : ValidatedMonoBehaviour
     
     public void HandleAttack()
     {
+        if (_countdownTimer.Process() < .9f) return;
+        
         var position = transform.position;
         var direction = (_target.position - position).normalized;
         

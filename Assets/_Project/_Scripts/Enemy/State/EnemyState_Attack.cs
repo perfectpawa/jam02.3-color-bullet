@@ -8,16 +8,13 @@ public class EnemyState_Attack : EnemyState_Base
 
     public override void OnEnter()
     {
+        
         enemy.HandleCharge();
     }
 
     public override void Update()
     {
         enemy.HandleLookAtTarget();
-    }
-
-    public override void OnExit()
-    {
         enemy.HandleAttack();
     }
 }
