@@ -24,7 +24,6 @@ public class PlayerController : ValidatedMonoBehaviour
     [Header("Player Info")]
     [SerializeField] private PlayerColor _playerColor;
     [SerializeField] private float _playerMaxHP = 3f;
-    
 
     private Camera _camera;
     
