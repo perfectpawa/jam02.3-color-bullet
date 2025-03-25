@@ -11,10 +11,9 @@ public class ColorPool : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private CircleCollider2D _circleCollider2D;
     [Header("Info")] 
-    [SerializeField] private float _duration = 10f;
+    [SerializeField] private float _duration = 1f;
     [Header("Data")]
     [SerializeField] private PlayerColor _playerColor;
-    [SerializeField] private float _collisionRadius;
     [SerializeField] private bool _isUsing;
 
     private CountdownTimer _existTimer;
@@ -33,6 +32,7 @@ public class ColorPool : MonoBehaviour
         
         _existTimer = new CountdownTimer(_duration);
         _existTimer.Stop();
+        
     }
     
     private void Update()
@@ -43,6 +43,20 @@ public class ColorPool : MonoBehaviour
         {
             DespawnAction?.Invoke(this);
             _existTimer.Stop();
+        }
+
+        if (_existTimer.Process() >= 0.8f)
+        {
+            //for each 0.2f change color to white and to white with opacity 50 
+            var index = (int) (_existTimer.Process() * 100) % 2;
+            if (index == 0)
+            {
+                _spriteRenderer.color = Color.white;
+            }
+            else
+            {
+                _spriteRenderer.color = new Color(1, 1, 1, 0.5f);
+            }
         }
     }
 
@@ -64,6 +78,7 @@ public class ColorPool : MonoBehaviour
         _animator.runtimeAnimatorController = spawner.GetColorAnimator(playerColor);
 
         _existTimer.Start();
+        _spriteRenderer.color = Color.white;
 
         _isUsing = false;
         _animator.CrossFade("Explode", 0f);
@@ -77,7 +92,6 @@ public class ColorPool : MonoBehaviour
 
     private void SetCollisionRadius(float collisionRadius)
     {
-        _collisionRadius = collisionRadius;
         if (_circleCollider2D != null ) _circleCollider2D.radius = collisionRadius;
     }
 

@@ -151,7 +151,7 @@ MonoBehaviour:
   prefab: {fileID: 475993383}
   holder: {fileID: 14243535}
   _collisionRadius: 1
-  _existTime: 5
+  _existTime: 2
   _poolDatas:
   - playerColor: 1
     animator: {fileID: 9100000, guid: 24a063014e0de9d4abca002f1f027532, type: 2}
@@ -395,7 +395,6 @@ GameObject:
   m_Component:
   - component: {fileID: 296024646}
   - component: {fileID: 296024645}
-  - component: {fileID: 296024647}
   m_Layer: 0
   m_Name: SniperPool
   m_TagString: Untagged
@@ -433,42 +432,6 @@ Transform:
   - {fileID: 1438529755}
   m_Father: {fileID: 816853159}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &296024647
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296024644}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.3
 --- !u!1 &454807873
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,9 +567,8 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 475993386}
   _animator: {fileID: 475993385}
   _circleCollider2D: {fileID: 475993384}
-  _duration: 10
+  _duration: 5
   _playerColor: 0
-  _collisionRadius: 10
   _isUsing: 0
 --- !u!58 &475993384
 CircleCollider2D:
@@ -1333,6 +1295,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1438529755}
   - component: {fileID: 1438529754}
+  - component: {fileID: 1438529756}
+  - component: {fileID: 1438529757}
   m_Layer: 0
   m_Name: Prefab
   m_TagString: Untagged
@@ -1355,7 +1319,7 @@ MonoBehaviour:
   _animator: {fileID: 1924569678}
   info: {fileID: 11400000, guid: e7b874666ab4af541abf1920d7fd26a0, type: 2}
   offset: 0
-  dmgDealer: {fileID: 0}
+  dmgDealer: {fileID: 1438529756}
 --- !u!4 &1438529755
 Transform:
   m_ObjectHideFlags: 0
@@ -1372,6 +1336,55 @@ Transform:
   - {fileID: 1924569676}
   m_Father: {fileID: 296024646}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1438529756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438529753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e560e7add97833a41b572f663fabd446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layerMasks: []
+--- !u!58 &1438529757
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438529753}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.3
 --- !u!1 &1468175638
 GameObject:
   m_ObjectHideFlags: 0

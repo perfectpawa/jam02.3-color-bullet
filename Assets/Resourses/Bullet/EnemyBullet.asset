@@ -16,3 +16,4 @@ MonoBehaviour:
   flySpeed: 15
   duration: 1
   fireRate: 1
+  damage: 1
