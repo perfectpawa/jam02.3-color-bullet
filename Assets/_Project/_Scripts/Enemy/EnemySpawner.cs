@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class EnemySpawner : PoolerBase<EnemyController>
@@ -15,7 +16,7 @@ public class EnemySpawner : PoolerBase<EnemyController>
     [SerializeField] private Transform bottomdownLimit;
 
     [SerializeField] private float _waveCooldown = 1f;
-    [SerializeField][UnityEngine.Range(5,100)] private int _waveSize = 5;
+    [FormerlySerializedAs("_waveSize")] [SerializeField][UnityEngine.Range(5,100)] private int _maxWaveSize = 5;
     [SerializeField] private int _waveCount = 0;
     [Header("Visual Enemy")]
     [SerializeField] private List<AnimatorController> _animators;
@@ -58,14 +59,16 @@ public class EnemySpawner : PoolerBase<EnemyController>
 
     public void SpawnWave()
     {
-        if (_waveIndex >= _waveCount)
-        {
-            return;
-        }
+        // if (_waveIndex >= _waveCount)
+        // {
+        //     return;
+        // }
+        //
+        // _waveIndex++;
+        
+        var waveSize = _maxWaveSize - ActiveCount;
 
-        _waveIndex++;
-
-        for (int i = 0; i < _waveSize; i++)
+        for (var i = 0; i < waveSize; i++)
         {
             var enemy = Get();
 
@@ -73,7 +76,7 @@ public class EnemySpawner : PoolerBase<EnemyController>
 
             var spawnPos = GetRandomPos();
 
-            var playerColor = (PlayerColor)UnityEngine.Random.Range(1, Enum.GetValues(typeof(PlayerColor)).Length);
+            var playerColor = (PlayerColor)Random.Range(1, Enum.GetValues(typeof(PlayerColor)).Length);
             
             enemy.transform.position = spawnPos;
             enemy.gameObject.SetActive(true);

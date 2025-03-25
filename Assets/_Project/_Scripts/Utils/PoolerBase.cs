@@ -11,6 +11,9 @@ public abstract class PoolerBase<T> : MonoBehaviour where T : MonoBehaviour
     [SerializeField] protected GameObject holder;
     
     private List<T> _pool;
+    private List<T> _activePool;
+    
+    protected int ActiveCount => _activePool.Count;
 
     private int _count = 0;
 
@@ -35,6 +38,7 @@ public abstract class PoolerBase<T> : MonoBehaviour where T : MonoBehaviour
         this.holder = holder;
 
         Pool = new List<T>();
+        _activePool = new List<T>();
     }
 
     /// <summary>
@@ -50,6 +54,8 @@ public abstract class PoolerBase<T> : MonoBehaviour where T : MonoBehaviour
         var obj = Pool[0];
         Pool.RemoveAt(0);
         obj.gameObject.SetActive(true);
+        
+        _activePool.Add(obj);
 
         Initialize(obj);
 
@@ -86,5 +92,6 @@ public abstract class PoolerBase<T> : MonoBehaviour where T : MonoBehaviour
     {
         obj.gameObject.SetActive(false);
         Pool.Add(obj);
+        _activePool.Remove(obj);
     }
 }
