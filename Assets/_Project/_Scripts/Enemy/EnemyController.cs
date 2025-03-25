@@ -1,6 +1,7 @@
 using System;
 using KBCore.Refs;
 using StateMachineBehaviour;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class EnemyController : ValidatedMonoBehaviour
@@ -170,4 +171,11 @@ public class EnemyController : ValidatedMonoBehaviour
         DeathAction?.Invoke();
         
     }
+
+    public void Initialize(PlayerColor color, AnimatorController animator)
+    {
+        _deathColor = color;
+        _animator.runtimeAnimatorController = animator;
+    }
+    
 }
