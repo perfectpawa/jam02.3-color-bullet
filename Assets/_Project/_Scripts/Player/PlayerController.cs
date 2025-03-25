@@ -5,21 +5,26 @@ using UnityEngine;
 
 public class PlayerController : ValidatedMonoBehaviour
 {
+    [Header("References")]
     [SerializeField, Anywhere] private InputReader _inputReader;
     [SerializeField, Self] private Rigidbody2D _rb;
     [SerializeField, Child] private Animator _animator;
     [SerializeField, Anywhere] private BulletManager _bulletManager;
     [SerializeField, Child] private Transform _model;
+    [SerializeField, Self] private PlayerDamageReceiver _damageReceiver;
     
+    [Header("Movement Settings")]
     [SerializeField] private float _moveSpeed = 1.5f;
     [SerializeField] private float _rotateSpeed = 180f;
-    
+    [Header("Knock Back Settings")]
     [SerializeField] private float _knockBackDuration = 0.5f;
     [SerializeField] private float _knockBackSpeed = 1f;
-    
+    [Header("Charge Settings")]
     [SerializeField] private float _chargeDuration = 1.5f;
-    
+    [Header("Player Info")]
     [SerializeField] private PlayerColor _playerColor;
+    [SerializeField] private float _playerMaxHP = 3f;
+    
 
     private Camera _camera;
     
@@ -34,6 +39,8 @@ public class PlayerController : ValidatedMonoBehaviour
     private Vector2 _knockBackDirection;
 
     private bool _wantFire;
+    
+    private bool _getKnockBack = false;
     
     #region Unity Callbacks
     private void OnEnable()
@@ -57,6 +64,8 @@ public class PlayerController : ValidatedMonoBehaviour
 
     private void Start()
     {
+        _damageReceiver.DeathAction += HandleDeath;
+        _damageReceiver.SetMaxHP(_playerMaxHP);
     }
 
 
@@ -106,6 +115,8 @@ public class PlayerController : ValidatedMonoBehaviour
     private void SetupTimer()
     {
         _knockBackTimer = new CountdownTimer(_knockBackDuration);
+        _knockBackTimer.OnTimerStop += () => _getKnockBack = false;
+        
         _chargeTimer = new CountdownTimer(_chargeDuration);
     }
     
@@ -122,6 +133,7 @@ public class PlayerController : ValidatedMonoBehaviour
         var fireDefaultState = new PlayerState_FireDefault(this, _animator);
         var fireShotgunState = new PlayerState_FireShotgun(this, _animator);
         var fireSniperState = new PlayerState_FireSniper(this, _animator);
+        var knockBackState = new PlayerState_KnockBack(this, _animator);
         
         Any(fireDefaultState, new FuncPredicate(PredicateForDefault));
         Any(fireShotgunState, new FuncPredicate(PredicateForShotgun));
@@ -132,6 +144,9 @@ public class PlayerController : ValidatedMonoBehaviour
         At(fireShotgunState, locomotionState, new FuncPredicate(() => _knockBackTimer.IsFinished));
         
         At(fireSniperState, locomotionState, new FuncPredicate(() => _chargeTimer.IsFinished));
+        
+        Any(knockBackState, new FuncPredicate(() => _getKnockBack));
+        At(knockBackState, locomotionState, new FuncPredicate(() => _knockBackTimer.IsFinished));
         
         _stateMachine.SetState(locomotionState);
         return;
@@ -257,6 +272,18 @@ public class PlayerController : ValidatedMonoBehaviour
         }
         
         Debug.Log($"Changed to {_playerColor} with {_bulletManager.CurrentBulletType}");
+    }
+    
+    public void TakeKnockBack(Vector3 direction)
+    {
+        _knockBackDirection = direction;
+        _getKnockBack = true;
+    }
+
+    private void HandleDeath()
+    {
+        Debug.Log("Player is dead");
+        Time.timeScale = 0;
     }
 }
 

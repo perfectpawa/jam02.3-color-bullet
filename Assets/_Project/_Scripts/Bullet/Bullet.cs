@@ -13,7 +13,8 @@ public abstract class Bullet : ValidatedMonoBehaviour
     public BulletInfo Info => info;
 
     private bool _isFlying;
-    private Vector2 _direction;
+    protected Vector2 startPos;
+    protected Vector2 direction;
     private CountdownTimer _despawnTimer;
 
     protected virtual void Awake()
@@ -28,26 +29,27 @@ public abstract class Bullet : ValidatedMonoBehaviour
         if (_isFlying) Flying();
     }
 
-    public virtual void OnFire(Vector2 position, Vector2 direction)
+    public virtual void OnFire(Vector2 position, Vector2 flyDirection)
     {
         _despawnTimer.Start();
-        _direction = direction;
+        startPos = position;
+        direction = flyDirection;
         _isFlying = true;
         
-        var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        var angle = Mathf.Atan2(flyDirection.y, flyDirection.x) * Mathf.Rad2Deg;
         _animator.transform.rotation = Quaternion.Euler(0, 0, angle);
         
-        transform.position = position + direction.normalized * offset;
+        transform.position = position + flyDirection.normalized * offset;
         
         _animator.CrossFade("Fly", 0);
     }
 
     protected virtual void Flying()
     {
-        transform.Translate(_direction * (info.flySpeed * Time.deltaTime));
+        transform.Translate(direction * (info.flySpeed * Time.deltaTime));
     }
     
-    private void Despawn()
+    protected void Despawn()
     {
         _isFlying = false;
         OnDespawn?.Invoke();

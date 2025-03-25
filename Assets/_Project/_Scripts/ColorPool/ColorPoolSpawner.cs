@@ -6,18 +6,12 @@ using UnityEngine;
 
 public class ColorPoolSpawner : PoolerBase<ColorPool>
 {
-    [SerializeField] private float _collisionRadius;
+    [SerializeField] private float _collisionRadius = 1f;
     [SerializeField] private float _existTime;
-    [SerializeField] List<PoolData> _poolDatas;
+    [SerializeField] private List<PoolData> _poolDatas;
 
     public float CollisionRadius => _collisionRadius;
     public float ExistTime => _existTime;
-
-    private void Start()
-    {
-        //invoke the pooler
-        
-    }
 
     public AnimatorController GetColorAnimator(PlayerColor playerColor)
     {
@@ -39,7 +33,7 @@ public class ColorPoolSpawner : PoolerBase<ColorPool>
         colorPool.SetupPool(playerColor, this);
     }
 
-    public void SpawnRadomPool(Vector3 position)
+    public void SpawnRandomPool(Vector3 position)
     {
         var colorPool = Get();
         colorPool.transform.position = position;
@@ -58,12 +52,6 @@ public class ColorPoolSpawner : PoolerBase<ColorPool>
 
     protected override void Initialize(ColorPool obj)
     {
-    }
-    
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, _collisionRadius);
     }
 }
 

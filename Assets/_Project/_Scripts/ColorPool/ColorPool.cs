@@ -10,6 +10,8 @@ public class ColorPool : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Animator _animator;
     [SerializeField] private CircleCollider2D _circleCollider2D;
+    [Header("Info")] 
+    [SerializeField] private float _duration = 10f;
     [Header("Data")]
     [SerializeField] private PlayerColor _playerColor;
     [SerializeField] private float _collisionRadius;
@@ -19,9 +21,6 @@ public class ColorPool : MonoBehaviour
 
 
     public Action<ColorPool> DespawnAction;
-    public PlayerColor PlayerColor => _playerColor;
-
-
 
     private void Reset()
     {
@@ -31,15 +30,14 @@ public class ColorPool : MonoBehaviour
     private void Awake()
     {
         SetupDefault();
-        _existTimer = new CountdownTimer(0);
+        
+        _existTimer = new CountdownTimer(_duration);
         _existTimer.Stop();
     }
-
+    
     private void Update()
     {
         _existTimer.Tick(Time.deltaTime);
-
-        Debug.Log(_existTimer.Process());
 
         if (_existTimer.IsFinished)
         {

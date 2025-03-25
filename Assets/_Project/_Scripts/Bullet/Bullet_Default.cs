@@ -1,3 +1,3 @@
-public class Bullet_Default : Bullet
+public class Bullet_Default : PlayerBullet
 {
 }

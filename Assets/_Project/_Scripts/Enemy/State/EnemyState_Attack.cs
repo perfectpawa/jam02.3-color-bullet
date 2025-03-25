@@ -8,7 +8,6 @@ public class EnemyState_Attack : EnemyState_Base
 
     public override void OnEnter()
     {
-        
         enemy.HandleCharge();
     }
 
@@ -16,5 +15,10 @@ public class EnemyState_Attack : EnemyState_Base
     {
         enemy.HandleLookAtTarget();
         enemy.HandleAttack();
+    }
+    
+    public override void OnExit()
+    {
+        enemy.HandleEndAttack();
     }
 }
