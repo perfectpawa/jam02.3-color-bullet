@@ -20,7 +20,7 @@ public class StatBar : MonoBehaviour
     
     public void SetMaxAmount(float maxAmount) => _maxAmount = maxAmount;
 
-    public void OnChange(float value)
+    public virtual void OnChange(float value)
     {
         if (_maxAmount == 0) return;
         _foreground.fillAmount = value/_maxAmount;

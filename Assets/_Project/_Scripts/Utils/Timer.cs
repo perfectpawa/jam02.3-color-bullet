@@ -5,6 +5,7 @@ public abstract class Timer
     protected float CurrentTime;
     
     public Action OnTimerStart = delegate { };
+    public Action<float> OnTimerTick = delegate { };
     public Action OnTimerStop = delegate { };
     
     public bool IsRunning { get; protected set; }
@@ -63,6 +64,8 @@ public class CountdownTimer : Timer
         if (!IsRunning) return;
         
         CurrentTime -= deltaTime;
+        
+        OnTimerTick.Invoke(Process());
 
         if (CurrentTime > 0) return;
         

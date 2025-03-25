@@ -24,6 +24,7 @@ public class PlayerController : ValidatedMonoBehaviour
     [Header("Player Info")]
     [SerializeField] private PlayerColor _playerColor;
     [SerializeField] private float _playerMaxHP = 3f;
+    [SerializeField] private float _bulletDuration = 10f;
 
     private Camera _camera;
     
@@ -34,7 +35,9 @@ public class PlayerController : ValidatedMonoBehaviour
     
     private CountdownTimer _knockBackTimer;
     private CountdownTimer _chargeTimer;
-    
+
+    public CountdownTimer BulletUpgradeTimer { get; private set; }
+
     private Vector2 _knockBackDirection;
 
     private bool _wantFire;
@@ -75,6 +78,7 @@ public class PlayerController : ValidatedMonoBehaviour
         
         _knockBackTimer.Tick(Time.deltaTime);
         _chargeTimer.Tick(Time.deltaTime);
+        BulletUpgradeTimer.Tick(Time.deltaTime);
         
         //if click "e" then change the color + 1
         if (Input.GetKeyDown(KeyCode.E))
@@ -117,6 +121,9 @@ public class PlayerController : ValidatedMonoBehaviour
         _knockBackTimer.OnTimerStop += () => _getKnockBack = false;
         
         _chargeTimer = new CountdownTimer(_chargeDuration);
+        
+        BulletUpgradeTimer = new CountdownTimer(_bulletDuration);
+        BulletUpgradeTimer.OnTimerStop += () => ChangePlayerColor(PlayerColor.White);
     }
     
     private void SetupInputReader()
@@ -253,7 +260,7 @@ public class PlayerController : ValidatedMonoBehaviour
     {
         if (_playerColor == playerColor) return;
         _playerColor = playerColor;
-        _animator.CrossFade("Idle-" + _playerColor.ToString(), 0f);
+        _animator.CrossFade("Idle-" + _playerColor, 0f);
 
         switch (_playerColor)
         {
@@ -270,7 +277,10 @@ public class PlayerController : ValidatedMonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
         
-        Debug.Log($"Changed to {_playerColor} with {_bulletManager.CurrentBulletType}");
+        if (_playerColor != PlayerColor.White)
+        {
+            BulletUpgradeTimer.Start();
+        }
     }
     
     public void TakeKnockBack(Vector3 direction)
