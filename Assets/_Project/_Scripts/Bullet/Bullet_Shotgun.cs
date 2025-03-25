@@ -11,6 +11,6 @@ public class Bullet_Shotgun : PlayerBullet
         
         var forceDirection = -(startPos - (Vector2)transform.position).normalized;
         
-        dmgDealer.DealOneShotDamage(1, receiver, forceDirection); //TODO: Change damage to a variable
+        dmgDealer.DealOneShotDamage(Info.damage, receiver, forceDirection);
     }
 }

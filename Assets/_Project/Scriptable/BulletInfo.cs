@@ -7,4 +7,5 @@ public class BulletInfo : ScriptableObject
     public float flySpeed;
     public float duration;
     public float fireRate;
+    public float damage;
 }
