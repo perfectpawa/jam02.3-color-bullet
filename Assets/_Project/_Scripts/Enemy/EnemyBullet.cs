@@ -10,7 +10,7 @@ public class EnemyBullet : Bullet
         
         if (!collision.TryGetComponent(out DamageReceiver receiver)) return;
         
-        _dmgDealer.DealOneShotDamage(1, receiver, direction); //TODO: Change damage to a variable
+        _dmgDealer.DealOneShotDamage(Info.damage, receiver, direction);
         Despawn();
     }
     
