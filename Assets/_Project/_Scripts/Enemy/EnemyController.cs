@@ -7,12 +7,13 @@ using Random = UnityEngine.Random;
 
 public class EnemyController : ValidatedMonoBehaviour
 {
+    #region Fields
     [Header("Reference")]
-    [SerializeField, Anywhere] private ColorPoolSpawner _colorPoolSpawner;
     [SerializeField, Self] private Rigidbody2D _rb;
-    [SerializeField] private EnemyBulletPool _bulletPool;
-    [SerializeField, Self] private EnemyDamageReceiver _damageReceiver;
     [SerializeField, Child] private Animator _animator;
+    [SerializeField, Self] private EnemyDamageReceiver _damageReceiver;
+    [SerializeField, Anywhere] private ColorPoolSpawner _colorPoolSpawner;
+    [SerializeField, Anywhere] private EnemyBulletPool _bulletPool;
     
     [Header("Movement Settings")]
     [SerializeField] private float _moveSpeed = 1.5f;
@@ -46,7 +47,8 @@ public class EnemyController : ValidatedMonoBehaviour
     
     private CountdownTimer _chargeTimer;
     private CountdownTimer _knockBackTimer;
-
+    #endregion
+    
     #region Unity Callbacks
     private void Awake()
     {
