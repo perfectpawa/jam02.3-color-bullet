@@ -1,12 +1,16 @@
 ﻿#  Color Bullet (Game Jam Project)
 
-Welcome to **Color**, a fast-paced **top-down shooting game** developed for a Game Jam with the theme **"Color"**. In this unique twist on the shooter genre, your weapon changes based on the **color absorbed from enemy blood**, turning combat into a chaotic and strategic dance of survival and adaptability.
+Welcome to **Color Bullet**, a fast-paced **top-down shooting game** developed for a Game Jam with the theme
+**"Color"**. In this game, 
+your weapon changes based on the **color absorbed from enemy blood**, 
+turning combat into a chaotic and strategic dance of survival and adaptability.
 
 ---
 
 ## Game Concept
 
-In **Color**, every kill counts — not just for survival, but for **changing your arsenal**. As you move through pools of enemy blood, your character absorbs **colors** that dynamically transform your **weapon type**. Each color corresponds to a unique bullet type with its own mechanics and combat style.
+In **Color Bullet**, every kill counts — not just for survival, 
+but for **changing your arsenal**. As you move through pools of enemy blood, your character absorbs **colors** that dynamically transform your **weapon type**. Each color corresponds to a unique bullet type with its own mechanics and combat style.
 
 
 ### Weapon Types by Color
