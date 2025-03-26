@@ -38,4 +38,10 @@ public class DamageReceiver : MonoBehaviour
     {
         DeathAction?.Invoke();
     }
+    
+    public void ResetHP()
+    {
+        _currentHP = _maxHP;
+        OnChangeCurrentHP?.Invoke(_currentHP);
+    }
 }

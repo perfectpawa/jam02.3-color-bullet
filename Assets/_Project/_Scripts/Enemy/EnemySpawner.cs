@@ -21,10 +21,13 @@ public class EnemySpawner : PoolerBase<EnemyController>
 
     private CountdownTimer _waveTimer;
 
+     [SerializeField]private float _currentMaxWave;
     private void Start()
     {
         _waveTimer = new CountdownTimer(_waveCooldown);
         _waveTimer.Stop();
+        
+        _currentMaxWave = _maxWaveSize;
     }
 
     private void Update()
@@ -48,7 +51,7 @@ public class EnemySpawner : PoolerBase<EnemyController>
 
     private void SpawnWave()
     {
-        var waveSize = Mathf.Max(0, _maxWaveSize - ActiveCount);
+        var waveSize = Mathf.Max(0, _currentMaxWave - ActiveCount);
 
         for (var i = 0; i < waveSize; i++)
         {
@@ -91,5 +94,15 @@ public class EnemySpawner : PoolerBase<EnemyController>
             PlayerColor.Purple => _animators[1],
             _ => null
         };
+    }
+    
+    public void AddWaveSize(int amount)
+    {
+        _currentMaxWave += amount;
+    }
+    
+    public int GetWaveSize()
+    {
+        return (int)_currentMaxWave;
     }
 }

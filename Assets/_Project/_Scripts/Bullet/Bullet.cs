@@ -53,5 +53,6 @@ public abstract class Bullet : ValidatedMonoBehaviour
     {
         _isFlying = false;
         OnDespawn?.Invoke();
+        _despawnTimer?.Stop();
     }
 }

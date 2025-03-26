@@ -49,6 +49,8 @@ public class EnemyController : ValidatedMonoBehaviour
     private CountdownTimer _chargeTimer;
     private CountdownTimer _knockBackTimer;
     private CountdownTimer _repositionTimer;
+    
+    private EnemyState_Chase _chaseState;
     #endregion
     
     #region Unity Callbacks
@@ -99,21 +101,21 @@ public class EnemyController : ValidatedMonoBehaviour
     {
         _stateMachine = new StateMachine();
 
-        var chaseState = new EnemyState_Chase(this, _animator);
+        _chaseState = new EnemyState_Chase(this, _animator);
         var attackState = new EnemyState_Attack(this, _animator);
         var knockBackState = new EnemyState_KnockBack(this, _animator);
         var repositionState = new EnemyState_Reposition(this, _animator);
         
-        AddTransition(chaseState, attackState, PredicateAttack);
-        AddTransition(attackState, chaseState, () => _chargeTimer.IsFinished && !PredicateAttack());
+        AddTransition(_chaseState, attackState, PredicateAttack);
+        AddTransition(attackState, _chaseState, () => _chargeTimer.IsFinished && !PredicateAttack());
         
         AddAnyTransition(knockBackState, () => _isKnockBackActive);
-        AddTransition(knockBackState, chaseState, () => _knockBackTimer.IsFinished);
+        AddTransition(knockBackState, _chaseState, () => _knockBackTimer.IsFinished);
         
         AddTransition(attackState, repositionState, () => _chargeTimer.IsFinished && PredicateReposition());
-        AddTransition(repositionState, chaseState, () => _repositionTimer.IsFinished);
+        AddTransition(repositionState, _chaseState, () => _repositionTimer.IsFinished);
 
-        _stateMachine.SetState(chaseState);
+        _stateMachine.SetState(_chaseState);
     }
 
     private void AddTransition(IState from, IState to, Func<bool> condition) => _stateMachine.AddTransition(from, to, new FuncPredicate(condition));
@@ -144,16 +146,26 @@ public class EnemyController : ValidatedMonoBehaviour
     {
         float angle;
     
-        angle = Random.value < 0.7f ? Random.Range(90f, 135f) : 
+        angle = Random.value < 0.7f ? Random.Range(0f, 135f) : 
             Random.Range(135f, 180f);
 
         angle *= (Random.Range(0, 2) == 0 ? -1 : 1);
         
         _repositionDirection = Quaternion.Euler(0, 0, angle) * _moveDirection;
+
+        float duration;
+        if (Mathf.Abs(angle) < 90f)
+        {
+            duration = Mathf.Lerp(_repositionDuration * 0.1f, _repositionDuration, Mathf.Abs(angle)/90f);
+        }
+        else
+        {
+            duration = Mathf.Lerp(_repositionDuration, _repositionDuration * 0.1f, Mathf.Abs(angle) / 180f);
+        }
         
-        var duration = Mathf.Lerp(_repositionDuration, _repositionDuration * 0.1f, Mathf.Abs(angle) / 180f);
+        Debug.DrawRay(transform.position, _repositionDirection, Color.red, 1f);
         
-        _repositionTimer.Start(duration);
+        _repositionTimer.Start(duration*duration);
     }
     #endregion
 
@@ -210,6 +222,7 @@ public class EnemyController : ValidatedMonoBehaviour
     public void HandleDeath()
     {
         _colorPoolSpawner.SpawnColorPool(transform.position, _deathColor);
+        LevelManager.Instance.AddScore(1);
         DeathAction?.Invoke();
     }
 
@@ -217,6 +230,10 @@ public class EnemyController : ValidatedMonoBehaviour
     {
         _deathColor = color;
         _animator.runtimeAnimatorController = animator;
+        
+        _damageReceiver.ResetHP();
+        
+        _stateMachine.SetState(_chaseState);
     }
     #endregion
 }

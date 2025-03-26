@@ -94,4 +94,14 @@ public abstract class PoolerBase<T> : MonoBehaviour where T : MonoBehaviour
         Pool.Add(obj);
         _activePool.Remove(obj);
     }
+
+    public void ResetPool()
+    {
+        foreach (var obj in _activePool)
+        {
+            obj.gameObject.SetActive(false);
+            Pool.Add(obj);
+        }
+        _activePool.Clear();
+    }
 }

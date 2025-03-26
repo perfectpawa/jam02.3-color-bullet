@@ -258,7 +258,10 @@ public class PlayerController : ValidatedMonoBehaviour
     
     public void ChangePlayerColor(PlayerColor playerColor)
     {
-        if (_playerColor == playerColor) return;
+        if (_playerColor == playerColor)
+        {
+            if (_playerColor != PlayerColor.White) BulletUpgradeTimer.Start();
+        }
         _playerColor = playerColor;
         _animator.CrossFade("Idle-" + _playerColor, 0f);
 
@@ -293,6 +296,18 @@ public class PlayerController : ValidatedMonoBehaviour
     {
         Debug.Log("Player is dead");
         Time.timeScale = 0;
+        
+        LevelManager.Instance.LoseLevel();
+    }
+    
+    public void ResetPlayer()
+    {
+        _damageReceiver.ResetHP();
+        _animator.CrossFade("Idle-White", 0f);
+        ChangePlayerColor(PlayerColor.White);
+        
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        transform.position = Vector3.zero;
     }
 }
 

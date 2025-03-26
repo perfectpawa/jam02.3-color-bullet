@@ -79,6 +79,13 @@ public class BulletManager : MonoBehaviour
     {
         _currentBulletType = type;
     }
+    
+    public void ResetAllPool()
+    {
+        poolDefault.ResetPool();
+        poolShotgun.ResetPool();
+        poolSniper.ResetPool();
+    }
 }
 
 public enum BulletType
