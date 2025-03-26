@@ -8,7 +8,7 @@ public class EnemyState_Chase : EnemyState_Base
 
     public override void FixedUpdate()
     {
-        enemy.HandleLocomotion();
-        enemy.HandleLookAtTarget();
+        enemy.Move();
+        enemy.FaceTarget();
     }
 }

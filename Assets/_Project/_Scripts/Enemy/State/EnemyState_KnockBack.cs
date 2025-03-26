@@ -8,11 +8,11 @@ public class EnemyState_KnockBack : EnemyState_Base
 
     public override void OnEnter()
     {
-        enemy.HandleOnStartKnockBack();
+        enemy.StartKnockBackTimer();
     }
     
     public override void FixedUpdate()
     {
-        enemy.HandleKnockBack();
+        enemy.KnockBack();
     }
 }
