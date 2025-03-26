@@ -14,7 +14,7 @@ public class EnemySpawner : PoolerBase<EnemyController>
     [SerializeField] private Transform topLeftLimit;
     [SerializeField] private Transform bottomDownLimit;
     [SerializeField] private float _waveCooldown = 1f;
-    [SerializeField][UnityEngine.Range(5,100)] private int _maxWaveSize = 5;
+    [SerializeField][UnityEngine.Range(1,100)] private int _maxWaveSize = 5;
 
     [Header("Visual Enemy")]
     [SerializeField] private List<AnimatorController> _animators;

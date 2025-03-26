@@ -59,6 +59,12 @@ public class CountdownTimer : Timer
         base.Start();
     }
     
+    public virtual void Start(float duration)
+    {
+        _duration = duration;
+        Start();
+    }
+    
     public override void Tick(float deltaTime)
     {
         if (!IsRunning) return;

@@ -28,7 +28,8 @@ public class EnemyController : ValidatedMonoBehaviour
     [SerializeField] private float _knockBackSpeed = 1f;
 
     [Header("Reposition Settings")] 
-    [SerializeField] private float _repositionRatio = 0.5f;
+    [SerializeField] private float _repositionRatio = 0.2f;
+    [SerializeField] private float _repositionDuration = 0.5f;
     
     [Header("Info")]    
     [SerializeField] private float _maxHP = 3;
@@ -47,6 +48,7 @@ public class EnemyController : ValidatedMonoBehaviour
     
     private CountdownTimer _chargeTimer;
     private CountdownTimer _knockBackTimer;
+    private CountdownTimer _repositionTimer;
     #endregion
     
     #region Unity Callbacks
@@ -67,12 +69,12 @@ public class EnemyController : ValidatedMonoBehaviour
     {
         _stateMachine.Update();
         UpdateMoveDirection();
-        _chargeTimer.Tick(Time.deltaTime);
-        _knockBackTimer.Tick(Time.deltaTime);
+        UpdateTimer();
     }
 
     private void FixedUpdate()
     {
+        _rb.linearVelocity = Vector2.zero;
         _stateMachine.FixedUpdate();
     }
     #endregion
@@ -86,8 +88,11 @@ public class EnemyController : ValidatedMonoBehaviour
     private void InitializeTimers()
     {
         _chargeTimer = new CountdownTimer(_chargeDuration);
+        
         _knockBackTimer = new CountdownTimer(_knockBackDuration);
         _knockBackTimer.OnTimerStop += () => _isKnockBackActive = false;
+        
+        _repositionTimer = new CountdownTimer(_repositionDuration);
     }
 
     private void InitializeStateMachine()
@@ -105,8 +110,8 @@ public class EnemyController : ValidatedMonoBehaviour
         AddAnyTransition(knockBackState, () => _isKnockBackActive);
         AddTransition(knockBackState, chaseState, () => _knockBackTimer.IsFinished);
         
-        AddAnyTransition(repositionState, PredicateReposition);
-        AddTransition(repositionState, chaseState, () => !PredicateReposition());
+        AddTransition(attackState, repositionState, () => _chargeTimer.IsFinished && PredicateReposition());
+        AddTransition(repositionState, chaseState, () => _repositionTimer.IsFinished);
 
         _stateMachine.SetState(chaseState);
     }
@@ -137,8 +142,18 @@ public class EnemyController : ValidatedMonoBehaviour
 
     public void StartReposition()
     {
-        float angle = Random.Range(90f, 180f) * (Random.Range(0, 2) == 0 ? -1 : 1);
+        float angle;
+    
+        angle = Random.value < 0.7f ? Random.Range(90f, 135f) : 
+            Random.Range(135f, 180f);
+
+        angle *= (Random.Range(0, 2) == 0 ? -1 : 1);
+        
         _repositionDirection = Quaternion.Euler(0, 0, angle) * _moveDirection;
+        
+        var duration = Mathf.Lerp(_repositionDuration, _repositionDuration * 0.1f, Mathf.Abs(angle) / 180f);
+        
+        _repositionTimer.Start(duration);
     }
     #endregion
 
@@ -179,6 +194,13 @@ public class EnemyController : ValidatedMonoBehaviour
     #endregion
 
     #region Misc
+
+    private void UpdateTimer()
+    {
+        _chargeTimer.Tick(Time.deltaTime);
+        _knockBackTimer.Tick(Time.deltaTime);
+        _repositionTimer.Tick(Time.deltaTime);
+    }
     public void FaceTarget()
     {
         if (_moveDirection.x != 0)

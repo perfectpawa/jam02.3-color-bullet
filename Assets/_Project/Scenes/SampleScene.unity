@@ -1054,11 +1054,10 @@ MonoBehaviour:
   holder: {fileID: 568413285}
   _playerTransform: {fileID: 1537393028}
   _farFromPlayer: 10
-  topleftLimit: {fileID: 1384629940}
-  bottomdownLimit: {fileID: 759045804}
+  topLeftLimit: {fileID: 1384629940}
+  bottomDownLimit: {fileID: 759045804}
   _waveCooldown: 2
-  _maxWaveSize: 5
-  _waveCount: 3
+  _maxWaveSize: 1
   _animators:
   - {fileID: 9100000, guid: aa29af9a376eeca4d9428644706202e9, type: 2}
   - {fileID: 9100000, guid: 283d31cc56b80ae4d9e2a2780f7d571e, type: 2}
@@ -3456,16 +3455,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a41aa1cd92be3be458373808fff2354a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _colorPoolSpawner: {fileID: 14243536}
   _rb: {fileID: 2028507241}
-  _bulletPool: {fileID: 1633691832}
-  _damageReceiver: {fileID: 2028507244}
   _animator: {fileID: 1468175641}
+  _damageReceiver: {fileID: 2028507244}
+  _colorPoolSpawner: {fileID: 14243536}
+  _bulletPool: {fileID: 1633691832}
   _moveSpeed: 5
   _attackRange: 5
   _chargeDuration: 1.5
+  _aimOffsetAngle: 20
   _knockBackDuration: 0.1
   _knockBackSpeed: 15
+  _repositionRatio: 0.2
+  _repositionDuration: 1.5
   _maxHP: 6
   _deathColor: 2
 --- !u!4 &2028507243
