@@ -1,7 +1,6 @@
 using System;
 using KBCore.Refs;
 using StateMachineBehaviour;
-using UnityEditor.Animations;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -226,7 +225,7 @@ public class EnemyController : ValidatedMonoBehaviour
         DeathAction?.Invoke();
     }
 
-    public void Initialize(PlayerColor color, AnimatorController animator)
+    public void Initialize(PlayerColor color, RuntimeAnimatorController animator)
     {
         _deathColor = color;
         _animator.runtimeAnimatorController = animator;

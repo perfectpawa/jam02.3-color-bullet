@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class ColorPoolSpawner : PoolerBase<ColorPool>
@@ -13,7 +12,7 @@ public class ColorPoolSpawner : PoolerBase<ColorPool>
     public float CollisionRadius => _collisionRadius;
     public float ExistTime => _existTime;
 
-    public AnimatorController GetColorAnimator(PlayerColor playerColor)
+    public RuntimeAnimatorController  GetColorAnimator(PlayerColor playerColor)
     {
         //get the animator from the list
         foreach (var data in _poolDatas.Where(data => data.playerColor == playerColor))
@@ -59,5 +58,5 @@ public class ColorPoolSpawner : PoolerBase<ColorPool>
 public struct PoolData
 {
     public PlayerColor playerColor;
-    public AnimatorController animator;
+    public RuntimeAnimatorController animator;
 }

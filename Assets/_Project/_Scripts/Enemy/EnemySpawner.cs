@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,7 +16,7 @@ public class EnemySpawner : PoolerBase<EnemyController>
     [SerializeField][UnityEngine.Range(1,100)] private int _maxWaveSize = 5;
 
     [Header("Visual Enemy")]
-    [SerializeField] private List<AnimatorController> _animators;
+    [SerializeField] private List<RuntimeAnimatorController> _animators;
 
     private CountdownTimer _waveTimer;
 
@@ -84,7 +83,7 @@ public class EnemySpawner : PoolerBase<EnemyController>
         return randomPos;
     }
 
-    private AnimatorController GetCloseRangeAnimator(PlayerColor color)
+    private RuntimeAnimatorController GetCloseRangeAnimator(PlayerColor color)
     {
         if (_animators == null || _animators.Count < 2) return null;
 
