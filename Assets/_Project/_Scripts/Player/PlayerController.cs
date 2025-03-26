@@ -107,7 +107,7 @@ public class PlayerController : ValidatedMonoBehaviour
 
     private void UnsubscribeInput()
     {
-        _inputReader.Fire += OnFire;
+        _inputReader.Fire -= OnFire;
     }
     
     private void OnFire(bool state)
