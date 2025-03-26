@@ -8,7 +8,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject _bulletsMenu;
     public void PlayGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     public void QuitGame()
     {
