@@ -5,6 +5,7 @@ Welcome to **Color Bullet**, a fast-paced **top-down shooting game** developed f
 your weapon changes based on the **color absorbed from enemy blood**, 
 turning combat into a chaotic and strategic dance of survival and adaptability.
 
+Play now at: https://perfectpawa.itch.io/color-bullet
 ---
 
 ## Game Concept
